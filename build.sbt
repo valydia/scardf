@@ -16,3 +16,10 @@ libraryDependencies ++= Seq("com.hp.hpl.jena" % "jena" % "2.6.3",
 	 "junit" % "junit" % "4.7",
 	 "org.specs2" %% "specs2" % "2.3.11" % "test")
 
+
+libraryDependencies <++= (scalaVersion){v =>
+  if(v.startsWith("2.11")) Seq(
+    "org.scala-lang.modules" %% "scala-xml" % "1.0.3",
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4")
+  else Seq()
+}
