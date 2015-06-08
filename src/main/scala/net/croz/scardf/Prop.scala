@@ -45,6 +45,6 @@ object Prop {
   def apply( p: Property, m: Model ): Prop = m getProp p
 
   implicit def toProp( p: Property ): Prop = Prop( p )
-  implicit def toPropAnyPair( pa: Pair[Property, Any] ): Pair[Prop, Any] = (toProp( pa._1 ), pa._2)
+  implicit def toPropAnyPair( pa: (Property, Any) ): (Prop, Any) = (toProp( pa._1 ), pa._2)
   implicit def toJProperty( p: Prop ): Property = p.jProperty
 }

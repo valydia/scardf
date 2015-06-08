@@ -232,7 +232,7 @@ class TakeQ( exprs: Any* ) extends SparqlQ[TakeQ] {
     for ( o <- exprs ) o match {
       case set: Iterable[_] => appendAll( m, focus, set.toSeq )
       case p: Prop => append( m, focus, p )
-      case pair: Pair[Prop, List[Any]] =>
+      case pair: (Prop, List[Any]) =>
         val predicate = pair._1
         append( m, focus, predicate )
         for ( r <- focus/predicate ) 

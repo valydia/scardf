@@ -45,7 +45,7 @@ abstract class FindMakeAugmenter extends Augmenter {
 }
 
 abstract class PredAugmenter( pred: UriRef ) extends Augmenter {
-  def augment( nfg: NodeFromGraph ): Pair[UriRef, Node]
+  def augment( nfg: NodeFromGraph ): (UriRef, Node)
   
   def augmentations( g: Graph ) = g.triples filter {
     case RdfTriple( _, `pred`, _ ) => true

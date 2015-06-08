@@ -65,7 +65,7 @@ object having {
    * Creates a NodeFilter which leaves only those nodes that 
    * have ALL of the given assignments in the graph.
    */
-  def apply( assignments: Pair[UriRef, Any]* ) = 
+  def apply( assignments: (UriRef, Any)* ) =
     new NodeFilter( _ match {
       case gn: GraphNode => 
         assignments.map{ assignment => gn has assignment }.foldLeft(true){_&&_}

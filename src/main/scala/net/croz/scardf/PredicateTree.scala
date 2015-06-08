@@ -5,7 +5,7 @@ object PredicateTree {
   val empty = new PredicateTree( Map() )
   
   def apply() = empty
-  def apply( pairs: Pair[Prop, PredicateTree]* ) = new PredicateTree( Map( pairs: _* ) )
+  def apply( pairs: (Prop, PredicateTree)* ) = new PredicateTree( Map( pairs: _* ) )
   def apply( p: Prop ): PredicateTree = toPredicateTree( p )
   def apply( pp: PropPath ): PredicateTree = toPredicateTree( pp )
   def apply( head: PredicateConstruct, tail: PredicateConstruct* ): PredicateTree =

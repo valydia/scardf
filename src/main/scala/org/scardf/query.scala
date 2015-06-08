@@ -57,7 +57,7 @@ case class TemplateGraph( v: QVar, ttriples: Iterable[TemplateTriple] ) {
 }
 
 object TemplateFactory {
-  def apply( assignments: Pair[Blank, QVar]* ) = {
+  def apply( assignments: (Blank, QVar)* ) = {
     val tf = new TemplateFactory
     tf.varMap ++= assignments
     tf
@@ -75,7 +75,7 @@ class TemplateFactory {
   def apply( t: RdfTriple ): TemplateTriple = TemplateTriple( replaced( t.subj ), t.pred, replaced( t.obj ) )
   
   def apply( g: Graph ): TemplateGraph = varMap.toList match {
-    case List( Pair( _, v ) ) => TemplateGraph( v, g.triples map apply )
+    case List( ( _, v ) ) => TemplateGraph( v, g.triples map apply )
     case _ => null //TODO ???
   }
 }

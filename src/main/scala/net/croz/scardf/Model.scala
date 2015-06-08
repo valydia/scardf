@@ -25,7 +25,7 @@ class Model( val jModel: JModel ) extends util.Logging {
   
   def regNs( namespaces: Map[String, String] ) = 
     namespaces foreach { e => jModel.setNsPrefix( e._1, e._2 ) }
-  def regNs( pvMappings: Pair[String, Vocabulary]* ): Unit = 
+  def regNs( pvMappings: (String, Vocabulary)* ): Unit =
     regNs( Map( pvMappings map { p => (p._1, p._2.prefix) }: _* ) )
     
   //def withPrefix( prefix: String ) = { this.prefix = prefix; this }
@@ -83,7 +83,7 @@ class Model( val jModel: JModel ) extends util.Logging {
   
   def ++( other: Model ) = Model( jModel add other.jModel )
   
-  def listRes( assignment: Pair[Prop, Any] ) = { 
+  def listRes( assignment: (Prop, Any) ) = {
     val jp = assignment._1.jProperty
     val result = assignment._2 match {
       case n: Node => jModel.listResourcesWithProperty( jp, n.jNode )

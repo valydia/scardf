@@ -114,7 +114,7 @@ object Node {
 sealed abstract class SubjectNode() extends Node {
   def -( pred: UriRef ) = SubPredPair( this, pred )
   
-  def -( poPairs: Pair[ UriRef, Any ]* ) = Branch.make( this, poPairs: _* )
+  def -( poPairs: (UriRef, Any)* ) = Branch.make( this, poPairs: _* )
   
   override def apply( g: Graph ) = g/this
 }

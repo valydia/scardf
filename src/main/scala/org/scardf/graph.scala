@@ -233,7 +233,7 @@ class NodeIndex {
 class Serializator( sf: SerializationFormat ) {
   var bindings = Map[String, String]()
 
-  def prefixes( pairs: Pair[Symbol, Vocabulary]* ): Serializator = { 
+  def prefixes( pairs: (Symbol, Vocabulary)* ): Serializator = {
     bindings = Map(
       ( pairs map { p => p._1.name -> p._2.prefix } ): _* 
     )

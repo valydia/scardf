@@ -9,8 +9,8 @@ object Sparql {
   def selectX[T]( c: NodeConverter[T] ) = new SelectOptionQ( c )
   def selectAllX[T]( c: NodeConverter[T] ) = new SelectIteratorQ( c )
   
-  def extractRes( r: Res, replaces: Pair[Res, QVar]* ) = new ExtractResQ( r, Map( replaces: _* ) )
-  def extractResList( r: Res, replaces: Pair[Res, QVar]* ) = 
+  def extractRes( r: Res, replaces: (Res, QVar)* ) = new ExtractResQ( r, Map( replaces: _* ) )
+  def extractResList( r: Res, replaces: (Res, QVar)* ) =
     new ExtractResListQ( r, Map( replaces: _* ) )
   def extract( props: Prop* ) = new ExtractQ( props: _* )
   

@@ -76,5 +76,5 @@ extends NodeBagConverter[NodeBag]( bag => new NodeBag( bag.list filter ffn ) )
  */
 object where {
   def apply( ffn: Node => Boolean ) = new NodeBagFilter( ffn )
-  def apply( assignment: Pair[ Prop, Any ] ) = new NodeBagFilter( _.asRes has assignment )
+  def apply( assignment: (Prop, Any) ) = new NodeBagFilter( _.asRes has assignment )
 }
