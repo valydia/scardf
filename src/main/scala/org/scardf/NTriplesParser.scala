@@ -31,7 +31,7 @@ object NTriplesParser {
 
     def whitespace {
       if (char != space && char != tab)
-        error("Whitespace expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("Whitespace expected on line " + line + ", '" + char.toChar + "' found.")
       else
         optionalWhitespace
     }
@@ -53,7 +53,7 @@ object NTriplesParser {
 
     def eoln {
       if (!optionalEoln && !eof)
-        error("Line-end expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("Line-end expected on line " + line + ", '" + char.toChar + "' found.")
     }
 
     def restOfLine {
@@ -85,7 +85,7 @@ object NTriplesParser {
 
     def require(c: Char) {
       if (char != c)
-        error("'" + c + "' expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("'" + c + "' expected on line " + line + ", '" + char.toChar + "' found.")
       else
         char = reader.read
     }
@@ -104,7 +104,7 @@ object NTriplesParser {
     def subjectNode = char match {
       case '<' => uriref
       case '_' => blank
-      case other => error("'<' or '_' expected on line " + line + ", '" + other.toChar + "' found.")
+      case other => sys.error("'<' or '_' expected on line " + line + ", '" + other.toChar + "' found.")
     }
 
     def literal = {
@@ -155,7 +155,7 @@ object NTriplesParser {
       case '"' => literal
       case '<' => uriref
       case '_' => blank
-      case other => error("'\"', '<', or '_' expected on line " + line + ", '" + other.toChar + "' found.")
+      case other => sys.error("'\"', '<', or '_' expected on line " + line + ", '" + other.toChar + "' found.")
     }
 
     // The actual parsing loop

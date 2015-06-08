@@ -81,10 +81,10 @@ class TemplateFactory {
 }
 
 trait QueryEngine {
-  def select( q: String ): List[Map[QVar, Node]] = error( "SELECT not implemented" )
-  def construct( qStr: String ): Graph = error( "CONSTRUCT not implemented" )
-  def describe( qStr: String ): Graph = error( "DESCRIBE not implented" )
-  def ask( qStr: String ): Boolean = error( "ASK not implented" )
+  def select( q: String ): List[Map[QVar, Node]] = sys.error( "SELECT not implemented" )
+  def construct( qStr: String ): Graph = sys.error( "CONSTRUCT not implemented" )
+  def describe( qStr: String ): Graph = sys.error( "DESCRIBE not implented" )
+  def ask( qStr: String ): Boolean = sys.error( "ASK not implented" )
 }
 
 trait QueryEngineBackedGraph extends Graph with QueryEngine {
@@ -122,6 +122,6 @@ trait QueryEngineBackedGraph extends Graph with QueryEngine {
   override def contains( t: RdfTriple ) =
     ask( "ASK " + selectPart( t.subj, t.pred, t.obj ) )
 
-  override def +( t: RdfTriple ) = error( "Method + not implemented" )
-  override def ++( ts: TraversableOnce[RdfTriple] ) = error( "Method ++ not implemented" )
+  override def +( t: RdfTriple ) = sys.error( "Method + not implemented" )
+  override def ++( ts: TraversableOnce[RdfTriple] ) = sys.error( "Method ++ not implemented" )
 }

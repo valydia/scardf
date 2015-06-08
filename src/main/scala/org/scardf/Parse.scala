@@ -35,7 +35,7 @@ object Parse {
 
     def whitespace {
       if (char != space && char != tab)
-        error("Whitespace expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("Whitespace expected on line " + line + ", '" + char.toChar + "' found.")
       else
         optionalWhitespace
     }
@@ -48,7 +48,7 @@ object Parse {
       } else if (char == lf) {
         char = reader.read
       } else {
-        error("Line-end expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("Line-end expected on line " + line + ", '" + char.toChar + "' found.")
       }
     }
 
@@ -76,7 +76,7 @@ object Parse {
 
     def require(c: Char) {
       if (char != c)
-        error("'" + c + "' expected on line " + line + ", '" + char.toChar + "' found.")
+        sys.error("'" + c + "' expected on line " + line + ", '" + char.toChar + "' found.")
       else
         char = reader.read
     }
@@ -95,7 +95,7 @@ object Parse {
     def subjectNode = char match {
       case '<' => uriref
       case '_' => blank
-      case other => error("'<' or '_' expected on line " + line + ", '" + other.toChar + "' found.")
+      case other => sys.error("'<' or '_' expected on line " + line + ", '" + other.toChar + "' found.")
     }
 
     def literal = {
@@ -146,7 +146,7 @@ object Parse {
       case '"' => literal
       case '<' => uriref
       case '_' => blank
-      case other => error("'\"', '<', or '_' expected on line " + line + ", '" + other.toChar + "' found.")
+      case other => sys.error("'\"', '<', or '_' expected on line " + line + ", '" + other.toChar + "' found.")
     }
 
     def triple {

@@ -27,7 +27,7 @@ case class PredicateBranch( predicate: UriRef, forward: Boolean, required: Boole
     case List( pb ) => //TODO ?
       PredicateBranch( predicate, forward, required, PredicateTree( pb~( subs: _* ) ) )
     case x =>
-      error( "Cannot continue branch " + this + " on " + x )
+      sys.error( "Cannot continue branch " + this + " on " + x )
   }
   
   def buildPatternBlock( anchor: TermPlace ): PatternBlock = {
@@ -51,7 +51,7 @@ case class PredicateBranch( predicate: UriRef, forward: Boolean, required: Boole
     val objTerm =  if (forward) Node else root.node
     val matchedTriples = root.graph.triplesLike( subjTerm, predTerm, objTerm )
     if (required && matchedTriples.isEmpty)
-      error( this + " matched no " + (subjTerm, predTerm, objTerm) + " triples on " + root )
+      sys.error( this + " matched no " + (subjTerm, predTerm, objTerm) + " triples on " + root )
     outGraph ++= matchedTriples //TODO replace ++
     matchedTriples.map( t => if (forward) t.obj else t.subj ).foreach( n => n match {
       case sn: SubjectNode => pt.grow( root.graph/sn, outGraph )
