@@ -17,6 +17,7 @@ object AllSpecs extends Specification {
 
 @RunWith(classOf[JUnitRunner])
 object ScardfSpecs extends Specification {
+  sequential
   "NodeBag" should {
     "throw exception on taking one node from empty bag" in {
       NodeBag().oneNode must throwA[ NoSuchElementException ]

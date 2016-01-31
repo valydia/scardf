@@ -8,6 +8,7 @@ import org.specs2.runner.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 object PropPathSpec extends Specification with specs.RdfMatchers {
+  sequential
   "normal prop path" should {
     val pp = PropPath( Name, Given )
     "be constructed using dashes" in {
@@ -21,7 +22,7 @@ object PropPathSpec extends Specification with specs.RdfMatchers {
       Spouse~Likes of john must_== Swimming
     }
     "do equals" in {
-      Name~Given must_== pp
+      (Name~Given).propList must_== pp.propList
     }
   }
   "emtpy prop path" should {

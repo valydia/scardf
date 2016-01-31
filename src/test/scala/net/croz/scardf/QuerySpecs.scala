@@ -77,10 +77,10 @@ object QuerySpecs extends Specification with specs.RdfMatchers {
           optional( (person, Spouse, spouse) )
       )
       (selectPersonsWithSpouses from data).solutions == List(
-        Map( person -> anna ), 
-        Map( person -> bob ), 
-        Map( person -> jane, spouse -> john ),
-        Map( person -> john, spouse -> jane )
+        Map( person -> jane, spouse -> john),
+        Map( person -> john, spouse -> jane ),
+        Map( person -> bob ),
+        Map( person -> anna )
       )
     }
     "ask queries" in {

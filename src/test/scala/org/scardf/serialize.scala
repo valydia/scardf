@@ -8,6 +8,7 @@ import org.specs2.matcher.MatchResult
 
 @RunWith(classOf[JUnitRunner])
 object SerializerSpecs extends Specification {
+  sequential
   def parse( input: String, triples: Set[RdfTriple] ):MatchResult[Boolean] ={
     val parsedGraph = new jena.JenaGraph ++ new Serializator(NTriple).readFrom(new StringReader(input))
     val expectedGraph = new jena.JenaGraph ++ triples
@@ -24,7 +25,7 @@ object SerializerSpecs extends Specification {
     val b2 = new Blank("b2")
 
     "parse an empty line" in parse( "\n" )
-    
+
     "parse a comment" in parse( " # a comment\n" )
     "parse an all-URIref triple" in parse( "<a> <b> <c> .\n", a-b->c )
     "parse triple with blanks" in parse( "_:b1 <b> _:b2 .\n", b1-b->b2 )
